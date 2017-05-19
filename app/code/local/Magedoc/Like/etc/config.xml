@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Magedoc_Like> <!-- {ModuleNamespace}_{ModuleName} -->
+            <version>1.1.3</version><!-- Module version -->
+        </Magedoc_Like>
+    </modules>
+    <global>
+        <resources>
+            <like_setup>
+                <setup>
+                    <module>Magedoc_Like</module>
+                </setup>
+            </like_setup>
+            <conection>
+                <use>core_setup</use>
+            </conection>
+        </resources>
+        <models>
+            <like>
+                <class>Magedoc_Like_Model</class>
+                <resourceModel>like_resource</resourceModel>
+            </like>
+            <like_resource>
+                <class>Magedoc_Like_Model_Resource</class>
+                <entities>
+                    <product_like>
+                        <table>magedoc_product_like</table>
+                    </product_like>
+                    <product_like_aggregate>
+                        <table>magedoc_product_like_aggregate</table>
+                    </product_like_aggregate>
+                </entities>
+            </like_resource>
+        </models>
+        <blocks>
+            <like>
+                <class>Magedoc_Like_Block</class>
+            </like>
+        </blocks>
+        <helpers>
+            <like>
+                <class>Magedoc_Like_Helper</class>
+            </like>
+        </helpers>
+    </global>
+    <frontend>
+        <routers>
+            <like> <!-- {modulename} -->
+                <use>standard</use> <!-- [standard|admin], мы будем использовать standard т.к. это модуль для фронтенда -->
+                <args>
+                    <module>Magedoc_Like</module> <!-- {ModuleNamespace}_{ModuleName} -->
+                    <frontName>magedoc_like</frontName>  <!-- Это URL модуля, т.е. по адресу magento.local/magedoc_like будет доступен новый модуль. -->
+                </args>
+            </like>
+        </routers>
+        <layout>
+            <updates>
+                <magedoc_like module="Magedoc_Like">
+                    <file>like.xml</file>
+                </magedoc_like>
+            </updates>
+        </layout>
+        <events>
+            <catalog_product_collection_load_before>
+                <observers>
+                    <like>
+                        <type>singleton</type>
+                        <class>like/observer</class>
+                        <method>addLikesToCollection</method>
+                    </like>
+                </observers>
+            </catalog_product_collection_load_before>
+        </events>
+        <translate>
+            <modules>
+                <Magedoc_Like>
+                    <files>
+                        <default>Magedoc_Like.csv</default>
+                    </files>
+                </Magedoc_Like>
+            </modules>
+        </translate>
+    </frontend>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Magedoc_Like before="Mage_Adminhtml">Magedoc_Like_Adminhtml</Magedoc_Like>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <adminhtml>
+        <translate>
+            <modules>
+                <Magedoc_Like>
+                    <files>
+                        <default>Magedoc_Like.csv</default>
+                    </files>
+                </Magedoc_Like>
+            </modules>
+        </translate>
+    </adminhtml>
+</config>

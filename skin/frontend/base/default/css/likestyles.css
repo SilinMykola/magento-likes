@@ -1,0 +1,53 @@
+#likes_text {
+    color: green;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+#likes_count {
+    color: red;
+}
+.likes_view{
+    display: inline-block;
+}
+#likes{
+    background-color: transparent;
+    width: 10%;
+    margin-top: -21px;
+    padding: 0px;
+}
+.like_img{
+    width: 114%;
+    padding: 0px;
+}
+
+.likes_img{
+    width: 290%;
+    padding: 0px;
+}
+
+.product-like {
+    background-color: transparent;
+    width: 10%;
+    margin-top: -21px;
+    padding: 0px;
+}
+
+.likes_count {
+    color: red;
+}
+
+.likes_catalog_img {
+    width: 49px;
+    padding: 0px;
+}
+
+.catalog-product-like {
+    background-color: transparent!important;
+    width: 10%;
+    margin-top: -21px;
+    padding: 0px;
+}
+.popular-products-widget{
+    display: inline-block;
+}

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<layout version="0.1.0">
+<default>
+    <reference name="head">
+        <action method="addCss"><stylesheet>css/likestyles.css</stylesheet></action>
+    </reference>
+</default>
+<catalog_product_view>
+    <reference name="product.info.extrahint">
+        <block type="like/like" name="magedoc_like_block" template="like/like.phtml" />
+    </reference>
+    <reference name="head">
+        <action method="addJs"><script>like/like.js</script></action>
+    </reference>
+</catalog_product_view>
+<catalog_category_layered>
+    <reference name="product_list.name.after">
+        <block type="like/likes" name="magedoc_likes_block" template="like/catalog_like.phtml" />
+    </reference>
+    <reference name="head">
+        <action method="addJs"><script>like/like.js</script></action>
+    </reference>
+</catalog_category_layered>
+</layout>

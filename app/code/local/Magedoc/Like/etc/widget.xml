@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<widgets>
+    <like_widget type="like/widget" translate="name description" module="like">
+        <name>Add Product List Likes</name>
+        <description>List products with biggest likes</description>
+        <parameters>
+            <likes_title translate="label">
+                <label>Title Text</label>
+                <visible>1</visible>
+                <type>text</type>
+                <value>Most Popular Products</value>
+                <required>0</required>
+            </likes_title>
+            <quantity translate="label">
+                <label>Quantity Products in List</label>
+                <visible>1</visible>
+                <type>text</type>
+                <value>3</value>
+            </quantity>
+            <my_categories>
+                <label>Categories of products of interest</label>
+                <visible>1</visible>
+                <type>multiselect</type>
+                <source_model>like/options</source_model>
+            </my_categories>
+            <template>
+                <value>like/widget/widget.phtml</value>
+            </template>
+        </parameters>
+    </like_widget>
+</widgets>

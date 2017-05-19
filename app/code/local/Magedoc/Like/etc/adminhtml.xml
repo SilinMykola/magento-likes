@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+        <customer>
+            <children>
+                <magedoc_like translate="title" module="like">
+                    <sort_order>10</sort_order>
+                    <title>Products Likes</title>
+                    <action>adminhtml/like/</action>
+                </magedoc_like>
+            </children>
+        </customer>
+    </menu>
+</config>

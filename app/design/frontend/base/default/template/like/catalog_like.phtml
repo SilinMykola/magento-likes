@@ -1,0 +1,32 @@
+<?php
+/**
+ * Add to product list page like's button
+ *
+ */
+
+$productId = $this->getProductId();
+$storeId = $this->getStoreId();
+//echo $this->getProduct()->getData('like_count');
+?>
+
+<div class="likes_view">
+    <p id="likes_text"><?php echo $this->__('Likes').':';?></p>
+    <span id="<?php echo $productId;?>" class ='likes_count'><?php echo ($this->getProduct()->getData('like_count')) ? $this->getProduct()->getData('like_count') : 0;?></span>
+
+</div>
+
+<button type="button" disabled id ="button<?php echo $productId;?>" class="button btn-cart catalog-product-like" onclick="addLike(<?php echo $productId.", ".$storeId;?>)">
+    <img src="<?php echo $this->getSkinUrl('images/like/like.png') ?>" class="likes_catalog_img"  alt="thumbs up!">
+</button>
+
+<script>
+    var button_state = <?php echo (int)$this->enableButton();?>;
+
+    if (button_state == 1) {
+        document.getElementById('button<?php echo $productId;?>').disabled = false;
+    }
+</script>
+<br><br>
+
+
+
