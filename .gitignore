@@ -3,12 +3,11 @@
 #exception
 !.htaccess
 !skin/frontend/base/default/css/likestyles.css
-!/skin/frontend/base/default/images/like/
-!/js/like/
-!/app/code/local/Magedoc/
-!/app/design/frontend/base/default/template/like/
+!skin/frontend/base/default/images/like/
+!js/like/
+!app/code/local/Magedoc/
+!app/design/frontend/base/default/template/like/
 !app/design/frontend/base/default/layout/like.xml
 !app/etc/modules/Magedoc_Like.xml
 !app/locale/ru_RU/Magedoc_Like.csv
-!.gitignore
 !README.md
