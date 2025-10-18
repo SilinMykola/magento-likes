@@ -1,29 +1,25 @@
-Реализация  модуля Magento который позволяет пользователям ставить "Like" товарам на Frontend.
-Выполнено во время прохождения стажировки в Go Top (апрель 2017)
+# Magento Module: Product Likes
 
-1. Рядом с изображением товара на страницах Category View, Product view отображается кнопка "Like" и число - количество "Лайков".
-2. При нажатии на кнопку "лайк" сохраняется в отдельную таблицу magedoc_product_like. В таблице храните customer_ip, customer_id,
-product_id, created_at.
-3. Общее кол-во лайков товара хранится в отдельной таблице magedoc_product_like_aggregate: product_id, store_id, like_count.
-4. При добавлении лайка идет проверка, что бы один и тот же пользователь (или гость с одного и того же IP) не мог "лайкнуть" один и тот де товар дважды. Гости с
-одного и того же IP могут лайкать товар не чаще раза в сутки. 
-Если пользователь или гость не может добавить лайк, то кнопка добавления не активна.
-После добавления лайка кнопка становится не активной.
-5. Добавлен виджет отображения продуктов с наибольшим количеством лайков. Виджет настраивается через админку, можно выбрать категории по которым отображать лайки.
-Если текущая категория не выбрана в настройках виджета, то отображаются продукты с наибольшими лайками по всем категориям магазина.
-6. Добавлен грид для отображения лайков в админке. Поля: id записи, id магазина, название продукта, IP адрес покупателя, имя покупателя.
-Имя покупателя составное (Full Name). Если лайк ставил гость, то Full Name отображается Guest.
+Implementation of a Magento module that lets customers “Like” products on the storefront. Built during an internship at **Go Top** (April 2017).
 
-Для реализации проделано:
-1. Задана конфигурация модуля.
-2. Реализован sql_setup (при дальнейших изменениях добавил update).
-3. Реализованы Модели + Контроллер.
-4. Реализован вывод на frontend (layout updates). Добавлен блок в main product info block. 
-5. Реализована возможность загрузки модели из БД по двум полям и более. Для этого переопределен метод _getLoadSelect класса Mage_Core_Model_Resource_Db_Abstract,
- принимающий в качестве параметра массив.
-6. Добавлен отдельный стиль для отображения лайков.
-7. Добавлен Observer, который добавляет количество лайков продуктов в колекцию. (Для отображения лайков в каталоге товаров).
-8. Для отображения лайков в админке реализован грид, добавлен пункт в меню. Добавлено к гриду составное поле из First name и Last Name каждого Customer,
-поставившего лайк. Если поля пустые, то отображается Guest.
-9. Реализован поиск по составному полю Full Name.
-10. Реализован базовый перевод виджета, грида, блока. 
+## What it does
+- Displays a **“Like” button** and a **like counter** next to the product image on **Category View** and **Product View** pages.
+- When the button is clicked, a record is saved to the `magedoc_product_like` table storing: `customer_ip`, `customer_id`, `product_id`, `created_at`.
+- The total number of likes per product is stored in `magedoc_product_like_aggregate` with fields: `product_id`, `store_id`, `like_count`.
+- **Duplicate protection:** the same customer (or a guest from the same IP) cannot like the same product twice. Guests from the same IP may like a product **no more than once per day**. If a user/guest cannot like, the button is disabled. After a like is added, the button becomes disabled.
+
+## Widgets and admin
+- **Widget:** shows products with the highest number of likes. Configurable in the admin: you can select categories to scope the results. If the current category isn’t selected in the widget settings, the widget shows the most-liked products across the entire store.
+- **Admin grid:** lists likes with columns: record ID, store ID, product name, customer IP, customer full name. The full name is composite; if the like was added by a guest, the full name displays **Guest**.
+
+## Implementation details
+- Module configuration defined.
+- `sql_setup` implemented (with upgrade scripts added later).
+- Models and controllers implemented.
+- Frontend output via **layout updates**; a block is added to the **main product info** block.
+- Added the ability to load a model by two or more fields by overriding the `_getLoadSelect` method of `Mage_Core_Model_Resource_Db_Abstract` to accept an array of fields.
+- Separate stylesheet for like UI.
+- **Observer** adds product like counts to the product collection (for showing likes in catalog listings).
+- Admin grid with a menu entry; adds a composite **Full Name** field from each customer’s first and last name. If these fields are empty, **Guest** is shown.
+- Search by the composite **Full Name** implemented.
+- Basic translations provided for the widget, grid, and block.
